@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fal-ai/serverless-client": "^0.14.2",
+    "file-saver": "^2.0.5",
     "lucide-react": "^0.358.0",
     "next": "14.2.7",
     "react": "^18",
