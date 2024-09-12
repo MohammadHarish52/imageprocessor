@@ -2,6 +2,12 @@
 
 import * as fal from "@fal-ai/serverless-client";
 
+interface FalResult {
+  image: {
+    url: string;
+  };
+}
+
 export async function removeBg(imageUrl: string) {
   try {
     // Configure the Fal AI client
@@ -10,14 +16,14 @@ export async function removeBg(imageUrl: string) {
     });
 
     // Call the Fal AI model to remove the background
-    const result = await fal.subscribe("fal-ai/birefnet", {
+    const result = (await fal.subscribe("fal-ai/birefnet", {
       input: {
         image_url: imageUrl,
         model: "General Use (Light)",
         operating_resolution: "1024x1024",
         output_format: "png",
       },
-    });
+    })) as FalResult;
 
     // Return the URL of the processed image
     return result.image.url;
